@@ -38,7 +38,7 @@ if (isset($_SESSION['Auth'])) {
     $usersessionid = $_SESSION['Auth']['sessionid'];
     $usersql = mysql_query("SELECT * FROM $tablename WHERE user_hash='$usersessionid' ORDER BY userid LIMIT 1");
     $num2 = mysql_num_rows($usersql);
-    while ($data=mysql_fetch_assoc($usersql)){echo "Вы авторизованы как <a href = 'http://".$_SERVER['SERVER_NAME']."/users/".$data['userid']."'>" .$data['user_login']."</a>";} echo "<br>"; echo "<a href='http://news.list/logout.php'>Выйти</a>";
+    while ($data=mysql_fetch_assoc($usersql)){echo "Вы авторизованы как <a href = 'http://".$_SERVER['SERVER_NAME']."/users/".$data['userid']."'>" .$data['user_login']."</a>";} echo "<br>"; echo "<a href='http://".$_SERVER['SERVER_NAME']."/logout.php'>Выйти</a>";
 }
 // Если сессия запущена и пользователь Админ
 if ($_SESSION['Auth']['user_cat'] == 9) {
