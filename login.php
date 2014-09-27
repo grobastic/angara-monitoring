@@ -14,7 +14,7 @@ if (!isset($_SESSION['Auth'])) {
 else {
     echo "Вы уже авторизованы";
     echo "<br>";
-    echo "<a href='http://news.list/index.php'>На главную</a>";
+    echo "<a href='http://".$_SERVER['SERVER_NAME']."/index.php'>На главную</a>";
     
 }
 ?>
