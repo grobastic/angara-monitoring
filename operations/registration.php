@@ -58,5 +58,5 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sql.php';
     <p><b>Пароль:</b> <?=$pass?></p>
     <p>Пароль с мд5: <?=$passmd5?> </p>
     <p>Ф.И.О.: <?=$username?></p>
-    <a href="http://news.list/index.php">Назад</a>
+    <a href="http://<?=$_SERVER['SERVER_NAME']?>/index.php">Назад</a>
 <?php } ?>

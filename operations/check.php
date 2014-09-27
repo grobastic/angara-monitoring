@@ -55,8 +55,8 @@ if (isset($_REQUEST['UserAuth'])) {
         { print $error."<br>"; }
         }
     echo "<br>";
-    echo "<a href='http://news.list/login.php'>Назад</a> ";
-    echo "<a href='http://news.list/'>На главную</a> ";
-    echo "<a href='http://news.list/users/".$userid. "'>К себе</a>";
+    echo "<a href='http://".$_SERVER['SERVER_NAME']."/login.php'>Назад</a> ";
+    echo "<a href='http://".$_SERVER['SERVER_NAME']."/'>На главную</a> ";
+    echo "<a href='http://".$_SERVER['SERVER_NAME']."/users/".$userid. "'>К себе</a>";
 }
 ?>
