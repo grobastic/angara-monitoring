@@ -24,6 +24,7 @@ function new_table_trackers () {
 
 new_table_users ();
 new_table_trackers ();
+
 ?>
 <a href="index.php">Перейти на главную</a>
 </html>
