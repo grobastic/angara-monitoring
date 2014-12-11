@@ -12,8 +12,8 @@ session_start();
     </head>
     <body>
 <?php
-require_once 'lib/sqlvariable.php';
-require_once 'lib/sql.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sqlvariable.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sql.php';
 
 $tablename = "users";
 // Если сессия не запущена
@@ -44,6 +44,7 @@ if (isset($_SESSION['Auth'])) {
 if ($_SESSION['Auth']['user_cat'] == 9) {
     $resultusers =  mysql_query("SELECT * FROM $tablename ORDER BY userid");
     $num = mysql_num_rows($resultusers);
+    
     echo "<br>Строк в таблице: ".  $num;
     echo "<br>";
 ?>
@@ -59,8 +60,11 @@ if ($_SESSION['Auth']['user_cat'] == 9) {
             <td></td>
         </tr>
 <?php 
+// Запрос в таблицу со списком прав
+
 // Показываем таблицу зарегистрированных пользователей
-while ($data=mysql_fetch_assoc($resultusers) AND $i<=$num){ $i++; ?>
+while ($data=mysql_fetch_assoc($resultusers) AND $i<=$num){ $i++; $usercat = $data["user_cat"]; 
+    $permits = mysql_query("SELECT permitdescription FROM userpermits WHERE permitvalue='$usercat'") or die('');?>
         <form action="deleteuser.php">    
             <tr>
                 <td><?=$i?></td>
@@ -68,7 +72,9 @@ while ($data=mysql_fetch_assoc($resultusers) AND $i<=$num){ $i++; ?>
                 <td><input type="text" value="<?=$data["user_login"]?>"></td>
                 <td><input type="password" value="<?=$data["user_password"]?>"></td>
                 <td><input type="text" value="<?=$data["user_email"]?>"></td>
-                <td><input type="text" value="<?php if ($data["user_cat"]== '1'){echo 'Зарегистрированный'; } if ($data["user_cat"]== '9'){echo 'Администратор'; } ?>"></td>
+            <?php while ($permitsdata = mysql_fetch_assoc($permits)) {?>
+                <td><input type="text" value="<?=$permitsdata["permitdescription"]?>"></td> 
+            <?php } ?>
                 <td><?=$data["datereg"]?></td>
                 <td><button type="submit" name="DeleteByUserId" value="<?=$data["userid"]?>">X</button></form></td>
             </tr>
@@ -81,6 +87,6 @@ $time = $stop - $start;
 
 ?>
 </table>
-
+        <p><a href="points.php">Посмотреть данные с трекера</a></p>
 </body></html>
 <?php echo "Время выполнения скрипта: ".$time; ?>
