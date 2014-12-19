@@ -1,18 +1,24 @@
 <html><head></head><body>
 <?php
-// require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sqlvariable.php';
+
+ini_set("display_errors","1");
+ini_set("display_startup_errors","1");
+ini_set('error_reporting', E_ALL);
+
+//require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sqlvariable.php';
 $sqlservername = "37.112.113.169:3306";
-$sqldbname = "points";
-$sqluser = "root";
+$sqluser = "angara";
 $sqlpass = "Cthutq62924";
+$sqldbname = "points";
 require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sql.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/lib/paging.php';
+$i = 0;
 $i = $_REQUEST['i'];
-
 $tablename = "points";
-$pt_num_rows = mysql_num_rows(mysql_query("SELECT * FROM feedback ORDER BY feedbackid"));
-if (!isset($i)) { $fid_query = mysql_query("SELECT * FROM $tablename ORDER BY ptid"); }
-if (isset($i)) { $fid_query = mysql_query("SELECT * FROM $tablename ORDER BY ptid LIMIT $i,5"); }
+$pt_num_rows = mysql_num_rows(mysql_query("SELECT * FROM $tablename ORDER BY ptid"));
+if (!isset($i)) { $fid_query = mysql_query("SELECT * FROM $tablename ORDER BY ptid");
+if (!$fid_query) {die ("Запрос не выполняется: ".  mysql_error());} else {echo "Всё Ok!";} }
+if (isset($i)) { $fid_query = mysql_query("SELECT * FROM $tablename ORDER BY ptid LIMIT $i,5") or die ("Запрос не выполняется: ".  mysql_error()); }
 
 ?>
 <p><a href="http://<?=$_SERVER['SERVER_NAME']?>/index.php">На главную</a></p>
@@ -30,5 +36,5 @@ while ($data=mysql_fetch_assoc($fid_query)) { ?>
     </tr>
 <?php } ?>
 </table>
-<?php if (isset($i)) { paging ($fid_num_rows); } ?>
+<?php if (isset($i)) { paging ($pt_num_rows); } ?>
 </body></html>
