@@ -88,5 +88,6 @@ $time = $stop - $start;
 ?>
 </table>
         <p><a href="points.php">Посмотреть данные с трекера</a></p>
+        <p><a href="/leo/zapros.php">Карта</a></p>
 </body></html>
 <?php echo "Время выполнения скрипта: ".$time; ?>

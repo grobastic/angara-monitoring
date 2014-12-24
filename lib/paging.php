@@ -1,5 +1,5 @@
 <?php 
-function paging ($num_rows) {
+function paging ($num_rows, $postfix = "") {
 ?>
 <table style="padding-left: 2%"><tr><td>Страницы: </td>
 <?php
@@ -7,7 +7,7 @@ function paging ($num_rows) {
     {
     $v=($i+$a)/5; 
 ?>
-        <td style="width:10px;"><div><a href="http://<?=$_SERVER['SERVER_NAME']?><?=$_SERVER['SCRIPT_NAME']?>?i=<?=$i?>"><?=$v?></a></div></td>
+        <td style="width:10px;"><div><a href="http://<?=$_SERVER['SERVER_NAME']?><?=$_SERVER['SCRIPT_NAME']?>?i=<?=$i?><?=$postfix?>"><?=$v?></a></div></td>
 <?php } ?>
 </tr></table>
 <?php } ?>
