@@ -1,16 +1,27 @@
 <?php
-//Данные для подключения к серверу
+class sqlvariable {
+    public $sqlservername;
+    public $sqldbname;
+    public $sqluser;
+    public $sqlpass;
+            
+    function __construct() {
+        //Данные для подключения к серверу
 
-//Локальный сервер
-//$sqlservername = "localhost";
-//$sqldbname = "newproject";
-//$sqluser = "root";
-//$sqlpass = "";
+        //Локальный сервер
+        //$this->sqlservername = "localhost";
+        //$this->sqldbname = "newproject";
+        //$this->sqluser = "root";
+        //$this->sqlpass = "";
 
-//Ру-центр хостинг
-$sqlservername = "angara-mon.mysql:3306";
-$sqldbname = "angara-mon_db";
-$sqluser = "angara-mon_mysql";
-$sqlpass = "pfqd8xti";
+        //Ру-центр хостинг
+        $this->sqlservername = "angara-mon.mysql:3306";
+        $this->sqldbname = "angara-mon_db";
+        $this->sqluser = "angara-mon_mysql";
+        $this->sqlpass = "pfqd8xti";
+
+    }
+
+}
 ?>
 

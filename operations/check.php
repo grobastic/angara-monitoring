@@ -11,8 +11,11 @@ if (isset($_REQUEST['UserAuth'])) {
     // Запускаем сессию
     session_name("Auth");
     session_start();
-    require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sqlvariable.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sql.php';
+function __autoload ($class_name) {
+    require_once $_SERVER['DOCUMENT_ROOT'].'/lib/'.$class_name.'.php';
+}
+$vars = new sqlvariable();
+$sql = new MySQLConnection($vars->sqlservername,$vars->sqluser, $vars->sqlpass, $vars->sqldbname);
 
     $login = $_REQUEST['login'];
     $pass =  md5(md5(trim($_REQUEST['password'])));

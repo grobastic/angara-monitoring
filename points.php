@@ -1,5 +1,11 @@
 <html><head></head><body>
 <?php
+function __autoload ($class_name) {
+    require_once $_SERVER['DOCUMENT_ROOT'].'/lib/'.$class_name.'.php';
+}
+$vars = new sqlvariable();
+
+$PageSpeed = new PageSpeed();
 
 //ini_set("display_errors","1");
 //ini_set("display_startup_errors","1");
@@ -21,10 +27,13 @@ $sqlservername = $ipmysql;
 $sqluser = "angara";
 $sqlpass = "Cthutq62924";
 $sqldbname = "points";
-require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sql.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/lib/paging.php';
-$i = $_REQUEST['i'];
 $tablename = "gpsdata";
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/lib/paging.php';
+
+$sql = new MySQLConnection($sqlservername,$sqluser, $sqlpass, $sqldbname);
+
+$i = $_REQUEST['i'];
 $pt_num_rows = mysql_num_rows(mysql_query("SELECT * FROM $tablename ORDER BY id"));
 if (!isset($i)) { $fid_query = mysql_query("SELECT * FROM $tablename ORDER BY id");
 if (!$fid_query) {die ("Запрос не выполняется: ".  mysql_error());} else {echo "Всё Ok!";} }

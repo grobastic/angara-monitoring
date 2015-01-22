@@ -1,8 +1,16 @@
 <?php 
-$start = microtime(true);
+function __autoload ($class_name) {
+    require_once $_SERVER['DOCUMENT_ROOT'].'/lib/'.$class_name.'.php';
+}
+$PageSpeed = new PageSpeed();
+
 // Запускаем сессию
 session_name("Auth");
 session_start();
+
+$vars = new sqlvariable();
+$sql = new MySQLConnection($vars->sqlservername,$vars->sqluser, $vars->sqlpass, $vars->sqldbname);
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru">
@@ -12,8 +20,7 @@ session_start();
     </head>
     <body>
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sqlvariable.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/lib/sql.php';
+
 
 $tablename = "users";
 // Если сессия не запущена
@@ -90,4 +97,4 @@ $time = $stop - $start;
         <p><a href="points.php">Посмотреть данные с трекера</a></p>
         <p><a href="/leo/zapros.php">Карта</a></p>
 </body></html>
-<?php echo "Время выполнения скрипта: ".$time; ?>
+
