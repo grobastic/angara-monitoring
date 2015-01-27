@@ -1,0 +1,13 @@
+ <table><tr>
+         <td>
+             <form action="http://<?=$_SERVER['SERVER_NAME']?>/operations/registration.php">
+                 Логин: <input type="text" name="login" value=""><br>
+                 Пароль: <input type="password" name="pass" value=""><br>
+                 Ф.И.О.:  <input type="text" name="username" value=""><br>
+                 <input type="submit" name="NewUser" value="Регистрация">
+                 <input type="button" onclick="location.href='http://<?=$_SERVER['SERVER_NAME']?>/login.php'" value="Авторизация">
+             </form>
+         </td>
+         <td><?php include_once 'login.php'; ?>
+         </td>
+ </table>

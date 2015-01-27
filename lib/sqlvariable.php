@@ -9,19 +9,17 @@ class sqlvariable {
         //Данные для подключения к серверу
 
         //Локальный сервер
-        //$this->sqlservername = "localhost";
-        //$this->sqldbname = "newproject";
-        //$this->sqluser = "root";
-        //$this->sqlpass = "";
+        $this->sqlservername = "localhost";
+        $this->sqldbname = "newproject";
+        $this->sqluser = "root";
+        $this->sqlpass = "";
 
         //Ру-центр хостинг
-        $this->sqlservername = "angara-mon.mysql:3306";
-        $this->sqldbname = "angara-mon_db";
-        $this->sqluser = "angara-mon_mysql";
-        $this->sqlpass = "pfqd8xti";
+        //$this->sqlservername = "angara-mon.mysql:3306";
+        //$this->sqldbname = "angara-mon_db";
+        //$this->sqluser = "angara-mon_mysql";
+        //$this->sqlpass = "pfqd8xti";
 
     }
 
 }
-?>
-

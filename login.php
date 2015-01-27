@@ -3,13 +3,7 @@
 session_name("Auth");
 session_start();
 if (!isset($_SESSION['Auth'])) {
-?>
-   <form method="GET" action="http://<?=$_SERVER['SERVER_NAME']?>/operations/check.php">
-    Логин: <input name="login" type="text"><br>
-    Пароль: <input name="password" type="password"><br>
-    <input name="UserAuth" type="submit" value="Войти">
-    </form> 
-<?php 
+    require_once $_SERVER['DOCUMENT_ROOT'].'/forms/login.html';
 }
 else {
     echo "Вы уже авторизованы";
@@ -17,4 +11,3 @@ else {
     echo "<a href='http://".$_SERVER['SERVER_NAME']."/index.php'>На главную</a>";
     
 }
-?>

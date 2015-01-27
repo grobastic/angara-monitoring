@@ -6,5 +6,3 @@ class MySQLConnection {
         mysql_select_db($dbname) or die ("Не удается подключиться к базе: ".  mysql_error()); 
     }
 }
-?>
-

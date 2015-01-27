@@ -19,23 +19,13 @@ class UserRegistration {
     private $username;
     private $err;
     
-    function __construct($requestname,$field1,$field2,$field3) {
+    function __construct($requestname,$login,$pass,$username) {
         // Получаем данные
         if (isset($_REQUEST[$requestname])) {
-        $this->login = $_REQUEST[$field1];
-        $this->pass = $_REQUEST[$field2];
-        $this->username = $_REQUEST[$field3]; 
+        $this->login = (string)trim(strip_tags($_REQUEST[$login]));
+        $this->pass = (string)trim(strip_tags($_REQUEST[$pass]));
+        $this->username = (string)trim(strip_tags($_REQUEST[$username])); 
         }
-    }
-    function __destruct() {
-        
-    }
-            function ProcessParam() {
-        // Обрабатываем данные
-        $this->login = trim($this->login);
-        $this->pass = trim($this->pass);
-        $this->passmd5 = md5(md5($this->pass));
-        $this->username = trim($this->username);
     }
     function CheckParam() {
         // Проверям данные
@@ -55,7 +45,7 @@ class UserRegistration {
         if(count($this->err) > 0) {
             print "<b>При регистрации произошли следующие ошибки:</b><br>";
             foreach($this->err AS $error)
-            { print $error."<br>"; }
+            { echo $error."<br>"; }
         }
     }
     function ProcessResult($tablename="users") {
@@ -90,7 +80,9 @@ class UserRegistration {
     echo "<p>Ф.И.О.: ".$this->username."</p>";
     echo "<a href='http://" .$_SERVER['SERVER_NAME']."/index.php'>Назад</a>";
     }
+    function __destruct() {
+        
+    }
     
 }
 
-?>

@@ -10,35 +10,13 @@ session_start();
 
 $vars = new sqlvariable();
 $sql = new MySQLConnection($vars->sqlservername,$vars->sqluser, $vars->sqlpass, $vars->sqldbname);
-
 ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru">
-    <head>
-        <meta charset="utf-8">   
-        <meta http-equiv="content-language" content="ru">
-    </head>
-    <body>
 <?php
-
-
 $tablename = "users";
 // Если сессия не запущена
 if (!isset($_SESSION['Auth'])) {
 // Показываем форму регистрации
-?>
-        <table><tr>
-                <td>
-            <form action="http://<?=$_SERVER['SERVER_NAME']?>/operations/registration.php">
-            Логин: <input type="text" name="login" value=""><br>
-            Пароль: <input type="password" name="pass" value=""><br>
-            Ф.И.О.:  <input type="text" name="username" value=""><br>
-            <input type="submit" name="NewUser" value="Регистрация">
-            <input type="button" onclick="location.href='http://<?=$_SERVER['SERVER_NAME']?>/login.php'" value="Авторизация">
-        </form></td>
-                <td><?php include_once 'login.php'; ?></td></table>
-       
-<?php
+    require_once $_SERVER['DOCUMENT_ROOT'].'/forms/registration.html';
 }
 // Если сессия запущена
 if (isset($_SESSION['Auth'])) { 
@@ -96,5 +74,5 @@ $time = $stop - $start;
 </table>
         <p><a href="points.php">Посмотреть данные с трекера</a></p>
         <p><a href="/leo/zapros.php">Карта</a></p>
-</body></html>
+
 

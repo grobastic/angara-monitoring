@@ -10,4 +10,4 @@ function paging ($num_rows, $postfix = "") {
         <td style="width:10px;"><div><a href="http://<?=$_SERVER['SERVER_NAME']?><?=$_SERVER['SCRIPT_NAME']?>?i=<?=$i?><?=$postfix?>"><?=$v?></a></div></td>
 <?php } ?>
 </tr></table>
-<?php } ?>
+<?php }

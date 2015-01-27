@@ -7,7 +7,6 @@ $sql = new MySQLConnection($vars->sqlservername,$vars->sqluser, $vars->sqlpass, 
 $PageSpeed = new PageSpeed();
 
 $registration = new UserRegistration('NewUser','login','pass','username');
-$registration->ProcessParam();
 $registration->CheckParam();
 $registration->ShowErrors();
 $registration->ProcessResult();

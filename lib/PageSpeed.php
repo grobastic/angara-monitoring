@@ -12,5 +12,3 @@ class PageSpeed {
       echo "<br>Время выполнения скрипта: ". $this->speed;
   }
 }
-
-?>
