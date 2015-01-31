@@ -14,11 +14,15 @@ $sql = new MySQLConnection($vars->sqlservername,$vars->sqluser, $vars->sqlpass, 
 <?php
 $tablename = "users";
 // Если сессия не запущена
-if (!isset($_SESSION['Auth'])) {
-// Показываем форму регистрации
-    require_once $_SERVER['DOCUMENT_ROOT'].'/forms/registration.html';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/login.php';
-}
+if (!isset($_SESSION['Auth'])) : 
+    // Показываем форму регистрации и авторизации
+    ?>
+
+<table>
+    <tr><td><?php require_once $_SERVER['DOCUMENT_ROOT'].'/forms/registration.html';?></td><td style="vertical-align: top;"><?php require_once $_SERVER['DOCUMENT_ROOT'].'/login.php';?></td></tr>
+</table>
+<?php
+ endif;
 // Если сессия запущена
 if (isset($_SESSION['Auth'])) { 
     $usersessionid = $_SESSION['Auth']['sessionid'];
