@@ -17,6 +17,7 @@ $tablename = "users";
 if (!isset($_SESSION['Auth'])) {
 // Показываем форму регистрации
     require_once $_SERVER['DOCUMENT_ROOT'].'/forms/registration.html';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/login.php';
 }
 // Если сессия запущена
 if (isset($_SESSION['Auth'])) { 
@@ -27,6 +28,7 @@ if (isset($_SESSION['Auth'])) {
 }
 // Если сессия запущена и пользователь Админ
 if ($_SESSION['Auth']['user_cat'] == 9) {
+    require_once $_SERVER['DOCUMENT_ROOT'].'/forms/addarticle.html';
     $resultusers =  mysql_query("SELECT * FROM $tablename ORDER BY userid");
     $num = mysql_num_rows($resultusers);
     
@@ -36,12 +38,13 @@ if ($_SESSION['Auth']['user_cat'] == 9) {
     <table style="border:2px solid black">
         <tr>
             <td>№</td>
-            <td>Идентификатор</td>
+            <td>ID</td>
             <td>Логин</td>
             <td>Пароль</td>
             <td>E-mail</td>
             <td>Категория пользователя</td>
             <td>Дата регистрации</td>
+            <td>IP</td>
             <td></td>
         </tr>
 <?php 
@@ -54,13 +57,14 @@ while ($data=mysql_fetch_assoc($resultusers) AND $i<=$num){ $i++; $usercat = $da
             <tr>
                 <td><?=$i?></td>
                 <td><a href="/users/<?=$data["userid"]?>"><?=$data["userid"]?></a></td>
-                <td><input type="text" value="<?=$data["user_login"]?>"></td>
-                <td><input type="password" value="<?=$data["user_password"]?>"></td>
-                <td><input type="text" value="<?=$data["user_email"]?>"></td>
+                <td><?=$data["user_login"]?></td>
+                <td><?=$data["user_password"]?></td>
+                <td><?=$data["user_email"]?></td>
             <?php while ($permitsdata = mysql_fetch_assoc($permits)) {?>
-                <td><input type="text" value="<?=$permitsdata["permitdescription"]?>"></td> 
+                <td><?=$permitsdata["permitdescriptio"]?></td> 
             <?php } ?>
                 <td><?=$data["datereg"]?></td>
+                <td><?=long2ip($data["user_ip"])?></td>
                 <td><button type="submit" name="DeleteByUserId" value="<?=$data["userid"]?>">X</button></form></td>
             </tr>
 <?php  } } 

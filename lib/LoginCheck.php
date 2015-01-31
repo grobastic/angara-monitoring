@@ -40,7 +40,7 @@ class LoginCheck {
         $this->query = mysql_query("SELECT * FROM $this->tablename WHERE user_login='$this->login' AND user_password='$this->pass' LIMIT 1");
         if(count($this->err) == 0) {
             if(mysql_result($this->count, 0) == 0)
-        { $this->err[] = "С указанным логином и паролем нет совпадений в базе"; }
+        { $this->err[] = "С указанным логином и паролем нет совпадений в базе <br> <a href='http://".$_SERVER['SERVER_NAME']."/operations/registration.php'>Зарегистрируйтесь</a>"; }
         }
     }
     function SessionIDGenerate () {
@@ -72,7 +72,7 @@ class LoginCheck {
     }
     function ShowErrors() {
         if(count($this->err) > 0) {
-            print "<b>При регистрации произошли следующие ошибки:</b><br>";
+            print "<b>При авторизации произошли следующие ошибки:</b><br>";
             foreach($this->err AS $error)
             { echo $error."<br>"; }
         }
