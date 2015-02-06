@@ -34,7 +34,7 @@ class DeleteUser {
                     {
                     echo "Файл не был создан <br>"; 
                     } 
-                mysql_query("DELETE FROM $this->tablename WHERE userid='$this->deleteuserid' LIMIT 1") or die ("SQL Error: ".  mysql_error(). "<br>"); // Удаляем пользователя с определенным ID из базы
+                mysql_query("DELETE FROM $this->tablename WHERE userid='".htmlspecialchars($this->deleteuserid)."' LIMIT 1") or die ("SQL Error: ".  mysql_error(). "<br>"); // Удаляем пользователя с определенным ID из базы
                                 
             if (file_exists($this->directory) == TRUE) {$this->result = 1;} else {$this->result = 0;}
          }

@@ -36,8 +36,8 @@ class LoginCheck {
         // Ищем совпадение в базе
         $this->tablename = $tablename;
         $this->pass =  md5(md5($this->pass));
-        $this->count = mysql_query("SELECT COUNT(*) FROM $this->tablename WHERE user_login='$this->login' AND user_password='$this->pass' LIMIT 1");
-        $this->query = mysql_query("SELECT * FROM $this->tablename WHERE user_login='$this->login' AND user_password='$this->pass' LIMIT 1");
+        $this->count = mysql_query("SELECT COUNT(*) FROM $this->tablename WHERE user_login='".$this->login."' AND user_password='$this->pass' LIMIT 1") or die ("SQL Error: ".  mysql_error());
+        $this->query = mysql_query("SELECT * FROM $this->tablename WHERE user_login='".$this->login."' AND user_password='$this->pass' LIMIT 1") or die ("SQL Error: ".  mysql_error());
         if(count($this->err) == 0) {
             if(mysql_result($this->count, 0) == 0)
         { $this->err[] = "С указанным логином и паролем нет совпадений в базе <br> <a href='http://".$_SERVER['SERVER_NAME']."/operations/registration.php'>Зарегистрируйтесь</a>"; }
@@ -64,10 +64,8 @@ class LoginCheck {
     function WriteSessionID () {
         if(count($this->err) == 0) {
             // Записываем идентификатор в БД 
-           mysql_query("UPDATE $this->tablename SET user_hash='$this->sessionid' WHERE userid='$this->userid'");
-            echo "Поздравляем! Вы авторизованы!";
-            echo "<br>";
-            echo $this->userid;
+           mysql_query("UPDATE $this->tablename SET user_hash='".htmlspecialchars($this->sessionid)."' WHERE userid='$this->userid'");
+           header('Location:http://'.$_SERVER['HTTP_HOST'].'/index.php');
         }
     }
     function ShowErrors() {

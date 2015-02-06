@@ -1,14 +1,13 @@
 <form action="http://<?=$_SERVER['SERVER_NAME']?>/operations/registration.php"> 
-    <fieldset>
+    <fieldset style="width:300px;">
         <legend>Регистрация</legend>
-    <table>
-        <tr><td><div style="float: left;">Логин:</div><div style="color: red;">*</div></td><td><input size="20" type="text" name="user_login" value="" autofocus required></td></tr>
-        <tr><td><div style="float: left;">Пароль:</div><div style="color: red;">*</div></td><td><input size="20" type="password" name="user_password" value="" required></td></tr>
-        <tr><td><div style="float: left;">E-mail:</div><div style="color: red;">*</div></td><td><input size="20" type="email" name="user_email" value="" required></td></tr>
-        <tr><td>Ф.И.О.:</td><td><input size="20" type="text" name="reserv1" value=""></td></tr>
-        <tr><td>Номер телефона:</td><td><input size="20" type="tel" name="user_phone1" value=""></td></tr>
-        <tr><td colspan="2"><button name="NewUser">Регистрация</button></td></tr>
-        <input name="user_ip" hidden>
-    </table>
+        <table>
+            <tr><td><div style="float: left;">Логин:</div><div style="color: red;">*</div></td><td><input size="20" type="text" name="user_login" value="" autofocus required></td></tr>
+            <tr><td><div style="float: left;">Пароль:</div><div style="color: red;">*</div></td><td><input size="20" type="password" name="user_password" value="" required></td></tr>
+            <tr><td><div style="float: left;">E-mail:</div><div style="color: red;">*</div></td><td><input size="20" type="email" name="user_email" value="" required></td></tr>
+            <tr><td>Ф.И.О.:</td><td><input size="20" type="text" name="reserv1" value=""></td></tr>
+            <tr><td>Номер телефона:</td><td><input size="20" type="tel" name="user_phone1" value=""></td></tr>
+            <tr><td colspan="2"><button name="NewUser">Регистрация</button></td></tr>
+        </table>
     </fieldset>
 </form>

@@ -56,7 +56,7 @@ function init() {
 </script>
 </head>
 <body>
-     <div id="content"></div>  
+    <script>document.write(content)</script>
       
     <script>  
         function show()  

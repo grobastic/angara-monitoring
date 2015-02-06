@@ -130,7 +130,8 @@ function mysql_articles () {
  if (mysql_query("SELECT * FROM articles LIMIT 1")) { echo 'Таблица <b>articles</b> уже есть в базе!<br>'; }
 else {
     mysql_query('CREATE TABLE IF NOT EXISTS articles ('
-            . 'arid INT AUTO_INCREMENT PRIMARY KEY NOT NULL'
+            . 'artid INT AUTO_INCREMENT PRIMARY KEY NOT NULL'
+            . ', artuserid TINYTEXT NOT NULL'
             . ', artshortname TINYTEXT NOT NULL'
             . ', artlongname TINYTEXT NOT NULL'
             . ', artmetatitle TINYTEXT'
@@ -149,13 +150,28 @@ else {
     echo 'Таблица <b>articles</b> успешно создана!<br>';
     }
 }
-
+function create_derictory ($directoryname) {
+    if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$directoryname))
+    {
+        mkdir($_SERVER['DOCUMENT_ROOT'].'/'.$directoryname);
+        echo 'Директория <b>'.$directoryname.'</b> успешно создана!<br>';
+    }
+    else
+    {
+        echo 'Директория <b>'.$directoryname.'</b> уже создана!<br>';
+    }
+}
+echo '<div><b>Таблицы:</b></div>';
 mysql_users ();
 mysql_userpermits ();
 mysql_trackers ();
 mysql_feedback ();
 mysql_points ();
 mysql_articles ();
+echo '<br>';
+echo '<div><b>Директории:</b></div>';
+create_derictory('users');
+create_derictory('qa');
 
 ?>
 <a href="index.php">Перейти на главную</a>

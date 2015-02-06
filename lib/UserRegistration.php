@@ -26,8 +26,8 @@ class UserRegistration {
         $this->numargs = func_num_args();
         $this->tablename = $this->funct_args[0]; //Обязательный параметр имя таблицы
         $this->requestname = $_REQUEST[$this->funct_args[1]]; //Обязательный параметр имя формы
-        $this->loginfield = $this->funct_args[2]; //Берем название поля
-        $this->passfield = $this->funct_args[3]; //Берем название поля
+        $this->loginfield = $this->funct_args[2]; //Берем название поля с логином
+        $this->passfield = $this->funct_args[3]; //Берем название поля с паролем
              
         if (isset($this->requestname)) {
             for ($i=2; $i<$this->numargs; $i++) 
@@ -86,11 +86,11 @@ class UserRegistration {
             if ($getuserid['userid'] == 1) { 
                 mysql_query("UPDATE $this->tablename SET user_cat='9' WHERE $this->loginfield='$this->login'") or die ("SQL Error: ".  mysql_error());
                 echo "Это админ!"; }
-            $directory = "../users/".$getuserid['userid'];
+            $directory = $_SERVER['DOCUMENT_ROOT']."/users/".$getuserid['userid'];
             mkdir($directory); // создаем директорию пользователя
             chdir($directory); // меняем директорию
             $file = fopen($fname, "a+t"); // создаем новый файл
-            $string = "<?php require '../../user.php'; ?>"; // будущее содержимое файла берем из шаблона
+            $string = "<?php require '".$_SERVER['DOCUMENT_ROOT']."/templates/user.php'; ?>"; // будущее содержимое файла берем из шаблона
             fwrite($file, $string); // производим запись в файл
             fclose($file); // закрываем файл после записи
             chdir("../../"); // возвращаемся в корневую директорию
