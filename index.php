@@ -7,12 +7,22 @@ $PageSpeed = new PageSpeed();
 $sessionname = "Auth";
 session_name($sessionname);
 session_start();
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru">
+    <head>
+        <meta charset="utf-8">   
+        <meta http-equiv="content-language" content="ru">
+        <link rel="stylesheet" href="http://<?=$_SERVER['SERVER_NAME']?>/css/styles.css">
+    </head>
+    <body>
+<?php 
 $permitslvl = $_SESSION[$sessionname]['user_cat'];
 $tablename = "users";
 
 $vars = new sqlvariable();
 $sql = new MySQLConnection($vars->sqlservername,$vars->sqluser, $vars->sqlpass, $vars->sqldbname);
-$MenuMine = new MenuMine('articles', $sessionname, $permitslvl, '1');
+$MenuMine = new MenuMine('articles', $sessionname, $permitslvl, 1, 0);
 $MenuMine->MenuQuery();
 $MenuMine->MenuResult();
 ?>
@@ -81,9 +91,10 @@ while ($data=mysql_fetch_assoc($resultusers) AND $i<=$num){ $i++; $usercat = $da
         <p><a href="points.php">Посмотреть данные с трекера</a></p>
         <p><a href="/leo/zapros.php">Карта</a></p>
 <?php
-$MenuAlter = new MenuMine('articles', $sessionname, $permitslvl, '0');
+$MenuAlter = new MenuMine('articles', $sessionname, $permitslvl, 1, 1);
 $MenuAlter->MenuQuery();
 $MenuAlter->MenuResult();
 ?>
-
+    </body>
+</html>
 

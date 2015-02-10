@@ -69,8 +69,6 @@ class UserRegistration {
     }
     function ProcessResult() 
     {
-        $fname="index.php";
-        
         if(count($this->err) == 0) 
         {
             $ArrayKeys = array_keys($this->funct_argsnew); //Получаем ключи массива (названия полей формы)
@@ -83,17 +81,18 @@ class UserRegistration {
             while ($getuserid=mysql_fetch_assoc($getuseridsql))
             {
             echo $getuserid['userid']. " Идентификатор пользователя.";
-            if ($getuserid['userid'] == 1) { 
+            if ($getuserid['userid'] == 1) 
+                { 
                 mysql_query("UPDATE $this->tablename SET user_cat='9' WHERE $this->loginfield='$this->login'") or die ("SQL Error: ".  mysql_error());
-                echo "Это админ!"; }
+                echo "Вы админ!!!"; 
+                }
             $directory = $_SERVER['DOCUMENT_ROOT']."/users/".$getuserid['userid'];
-            mkdir($directory); // создаем директорию пользователя
-            chdir($directory); // меняем директорию
-            $file = fopen($fname, "a+t"); // создаем новый файл
+            mkdir($directory); // Создаем директорию пользователя
+            chdir($directory); // Переходим в созданную директорию
+            $file = fopen("index.php", "a+t"); // создаем новый файл
             $string = "<?php require '".$_SERVER['DOCUMENT_ROOT']."/templates/user.php'; ?>"; // будущее содержимое файла берем из шаблона
             fwrite($file, $string); // производим запись в файл
             fclose($file); // закрываем файл после записи
-            chdir("../../"); // возвращаемся в корневую директорию
             } 
             
         }

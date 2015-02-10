@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><?=$ArtTitle?></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://<?=$_SERVER['SERVER_NAME']?>/css/styles.css">
+    </head>
+    <body>
+        <nav><?=$MenuMine->MenuResult()?></nav>
+        <div style="float: left; width: 20%;"><h2>Дерево разделов</h2><?=$MenuTree->MenuResult()?></div>
+        <div style="float: left; width: 80%;"><h1><?=$ArtLongname?></h1><?=$ArtBody?></div>
+        <footer style="width: 100%; height: 5%; border: 2px solid black; display: inline-block;"><div><?=$MenuAlter->MenuResult()?></div></footer>
+    </body>
+</html>

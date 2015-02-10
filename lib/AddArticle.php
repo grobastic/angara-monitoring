@@ -30,14 +30,28 @@ class AddArticle {
             $result = mysql_fetch_assoc($result);//Формируем массив
             $this->funct_argsnew['artuserid'] = ++$result['artid']; //Увеличиваем значени на единицу
             }
-        $ArrayKeys = array_keys($this->funct_argsnew); //Получаем ключи массива (названия полей формы)
-        $ArrayKeys = implode(", ", $ArrayKeys); //Преображуем массив со списком полей в строку
-        $ArrayValues = implode("', '", $this->funct_argsnew); //Перобразуем массив с данным формы в строку
+        $this->ArrayKeys = array_keys($this->funct_argsnew); //Получаем ключи массива (названия полей формы)
+        $this->ArrayKeys = implode(", ", $this->ArrayKeys); //Преображуем массив со списком полей в строку
+        $this->ArrayValues = implode("', '", $this->funct_argsnew); //Перобразуем массив с данным формы в строку
         //Формируем запрос, записываем данные в базу        
-        mysql_query("INSERT INTO $this->tablename ($ArrayKeys) VALUES ('$ArrayValues')") or die ("SQL Error: ".  mysql_error());
+        mysql_query("INSERT INTO $this->tablename ($this->ArrayKeys) VALUES ('$this->ArrayValues')") or die ("SQL Error: ".  mysql_error());
     }
-    function __destruct()
+    function CreateArticleFile ()
     {
-        header('Location:http://'.$_SERVER['HTTP_HOST'].'/index.php');
+        $artuserid = $this->funct_argsnew['artuserid'];
+        $getartidsql = mysql_query("SELECT * FROM $this->tablename WHERE artuserid = '$artuserid'") or die ("SQL Error: ".  mysql_error());
+        while ($getartid=mysql_fetch_assoc($getartidsql))
+            {
+            $directory = $_SERVER['DOCUMENT_ROOT']."/qa/";
+            chdir($directory); // Переходим в директорию
+            $file = fopen($getartid['artuserid'].".php", "a+t"); // создаем новый файл
+            $string = "<?php require '".$_SERVER['DOCUMENT_ROOT']."/templates/page.php'; ?>"; // будущее содержимое файла берем из шаблона
+            fwrite($file, $string); // производим запись в файл
+            fclose($file); // закрываем файл после записи
+            } 
+    }
+            function __destruct()
+    {
+        //header('Location:http://'.$_SERVER['HTTP_HOST'].'/index.php');
     }
 }

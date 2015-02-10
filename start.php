@@ -16,7 +16,7 @@ function mysql_users () {
             . ', user_ip TEXT(12)'
             . ', user_hash VARCHAR(32)'
             . ', user_email TINYTEXT'
-            . ', user_cat TINYTEXT'
+            . ', user_cat TINYINT'
             . ', user_phone1 TINYTEXT'
             . ', user_address TEXT'
             . ', user_inn TINYINT'

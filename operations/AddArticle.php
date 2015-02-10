@@ -11,4 +11,5 @@ $sql = new MySQLConnection($vars->sqlservername,$vars->sqluser, $vars->sqlpass, 
 
 $AddArticle = new AddArticle('AddArticle', 'articles', 'Auth', 'artuserid', 'artshortname', 'artlongname', 'artmetatitle', 'artkeywords', 'artparent', 'artlink', 'artshow', 'artsort', 'artannotation', 'artcontent');
 $AddArticle->ProcessResult();
+$AddArticle->CreateArticleFile();
 
