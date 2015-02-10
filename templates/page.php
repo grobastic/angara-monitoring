@@ -2,6 +2,7 @@
 function __autoload ($class_name) {
     require_once $_SERVER['DOCUMENT_ROOT'].'/lib/'.$class_name.'.php';
 }
+$PageSpeed = new PageSpeed();
 // Запускаем сессию
 session_name("Auth");
 session_start();

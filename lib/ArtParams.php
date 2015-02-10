@@ -14,12 +14,12 @@ class ArtParams {
     function ArtQuery ()
     {
         // Получаем URL страницы
-        $pattern = '/(\d+)/s';
+        $pattern = '/(?<=([qa])\/)[a-zA-Z0-9]+/';
         $URL = $_SERVER["REQUEST_URI"];
-        
+        $ArtIdFromUrl = array ();
         // Разбираем URL и получаем userid
-        preg_match($pattern, htmlspecialchars($URL), $ArtIdFromUrl) or die ("<br>Doesn't work");
-        $this->ArtUserID = $ArtIdFromUrl[1];
+        preg_match($pattern, htmlspecialchars($URL), $ArtIdFromUrl) or die ("Обработка не выполняется: ".__FILE__.",".__LINE__);
+        $this->ArtUserID = $ArtIdFromUrl[0];
         $this->query =  mysql_query("SELECT artshortname,artlongname,artmetatitle,artkeywords,artcontent,artaccess FROM $this->tablename WHERE artuserid='$this->ArtUserID' LIMIT 1") or die ("<br>SQL Doesn't work");
     }
     function ArtResult ()

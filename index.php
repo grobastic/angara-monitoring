@@ -15,7 +15,7 @@ session_start();
         <meta http-equiv="content-language" content="ru">
         <link rel="stylesheet" href="http://<?=$_SERVER['SERVER_NAME']?>/css/styles.css">
     </head>
-    <body>
+    <body style="width: 80%; margin: 0 auto;">
 <?php 
 $permitslvl = $_SESSION[$sessionname]['user_cat'];
 $tablename = "users";
