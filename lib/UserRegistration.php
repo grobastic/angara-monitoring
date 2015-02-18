@@ -1,5 +1,6 @@
 <?php
-class UserRegistration {
+class UserRegistration 
+{
     //Класс принимает данные из формы, в форме должны перечисляться все поля формы
     //1 параметр - название таблицы в базе
     //2 параметр - имя формы из которой приходят данные
@@ -11,10 +12,10 @@ class UserRegistration {
     private $pass;
     private $passmd5;
     private $username;
-    private $err;
+    private $err = array();
     private $tablename;
     private $funct_args;
-    private $funct_argsnew;
+    private $funct_argsnew = array();
     private $passfield;
     private $loginfield;
     private $requestname;
@@ -107,7 +108,7 @@ class UserRegistration {
     function __destruct() {
 
     }
-    }
+}
     
 
     

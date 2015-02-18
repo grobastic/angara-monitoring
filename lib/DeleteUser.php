@@ -5,6 +5,7 @@ class DeleteUser {
     private $sessionname;
     private $deleteuserid;
     private $result;
+    private $directory;
 
     function __construct ($requestname, $tablename, $sessionname) 
     {

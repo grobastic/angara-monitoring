@@ -2,9 +2,12 @@
 
 class ArtParams {
 
-    private $tablename = '';
-    private $query = '';
-    static $Longname;
+    private $tablename;
+    private $query;
+    static $ArtLongname;
+    static $ArtTitle;
+    static $ArtBody;
+    static $ArtUserID;
 
     function __construct($tablename) {
         
@@ -32,7 +35,6 @@ class ArtParams {
         return $this->ArtLongname;
         return $this->ArtTitle;
         return $this->ArtBody;
-        return $this->ArtUserID;
-        
+        return $this->ArtUserID;   
     }
 }

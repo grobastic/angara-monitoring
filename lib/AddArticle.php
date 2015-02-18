@@ -1,6 +1,16 @@
 <?php
 
 class AddArticle {
+
+    private $funct_args = array();
+    private $numargs;
+    private $tablename;
+    private $requestname;
+    private $sessionname;
+    private $funct_argsnew = array();
+    private $ArrayKeys;
+    private $ArrayValues;
+
     function __construct($requestname, $tablename, $sessionname) 
     {
         //Получаем данные

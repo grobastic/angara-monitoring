@@ -1,23 +1,12 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of LoginCheck
- *
- * @author Сергей
- */
 class LoginCheck {
     private $login;
     private $pass;
     private $query;
     private $count;
     private $tablename;
-    
+    private $err = array();
+
     function __construct($requestname, $login, $pass) {
         $this->login = trim(strip_tags($_REQUEST[$login]));
         $this->pass = trim(strip_tags($_REQUEST[$pass]));

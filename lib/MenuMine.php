@@ -4,6 +4,11 @@ class MenuMine {
     private $permitslevel;
     private $sessionname;
     private $tablename;
+    private $show;
+    private $parent;
+    private $alter;
+    private $query;
+    private $num;
 
     function __construct($tablename, $sessionname, $permitslevel, $show, $alter=0, $parent='') {
         $this->tablename = $tablename; //Обязательный параметр "имя таблицы"
