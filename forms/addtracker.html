@@ -1,0 +1,12 @@
+<a href="javascript:AddTrackerPopUpHide()" id="closePopup" class="closePopup">X</a>
+<div id="formhide">
+    <form id="AddNewTracker" action="http://<?=$_SERVER['SERVER_NAME']?>/operations/addtracker.php" method="post">
+        <input type="text" id="userid" name="userid" value="none" hidden>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">IMEI:</span>
+            <input type="text" class="form-control" placeholder="Введите IMEI вашего устройства" aria-describedby="basic-addon1" id="trackerimei" name="trackerimei">
+        </div>
+            <button type="submit" class="btn btn-default" name="AddNewTracker" id="AddNewTrackerbtn">Добавить трекер</button>     
+    </form>
+</div>
+<div id="result"></div>

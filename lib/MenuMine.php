@@ -37,14 +37,14 @@ class MenuMine {
     }
     function MenuResult ()
     { ?>
-<div <?php if ($this->alter !== 1) :  ?>id="cssmenu" <?php endif;?> >
-    <ul>
-       <?php if (!$this->parent) : ?> <li style="display: inline;" class="active"><a href="http://<?=$_SERVER['SERVER_NAME']?>/index.php"><span>Главная</span></a></li> <?php endif; ?>
+<div <?php if ($this->alter !== 1) :  ?>id="sf-menu" <?php endif;?> >
+    <ul class="sf-menu">
+       <?php if (!$this->parent) : ?> <li class="current"><a href="http://<?=$_SERVER['SERVER_NAME']?>/index.php">Главная</a></li> <?php endif; ?>
     <?php
         for ($i = 1; $i <= $this->num; $i++) : 
             $result = mysql_fetch_assoc($this->query);
         ?>
-        <li style="display: inline;"><a href="http://<?=$_SERVER['SERVER_NAME']?>/qa/<?=$result["artuserid"]?>.php"><span><?=$result["artshortname"]?></span></a></li>
+        <li style="display: inline;"><a href="http://<?=$_SERVER['SERVER_NAME']?>/qa/<?=$result["artuserid"]?>.php"><?=$result["artshortname"]?></a></li>
             <?php endfor; ?>
     </ul>
 </div>

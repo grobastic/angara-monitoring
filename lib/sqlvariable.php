@@ -10,7 +10,7 @@ class sqlvariable {
 
         //Локальный сервер
         $this->sqlservername = "localhost";
-        $this->sqldbname = "newproject";
+        $this->sqldbname = "angara_mon";
         $this->sqluser = "root";
         $this->sqlpass = "";
 

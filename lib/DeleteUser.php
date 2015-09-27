@@ -26,6 +26,7 @@ class DeleteUser {
          {
             $this->directory = $_SERVER['DOCUMENT_ROOT']."/users/".$this->deleteuserid;
             // Проверяем, есть ли файл, если есть - удаляем
+            if (file_exists($this->directory) == TRUE) {$this->result = 1;} else {$this->result = 0;}
             if (file_exists($this->directory)) 
                 { 
                 unlink($this->directory."/index.php"); 
@@ -36,21 +37,24 @@ class DeleteUser {
                     echo "Файл не был создан <br>"; 
                     } 
                 mysql_query("DELETE FROM $this->tablename WHERE userid='".htmlspecialchars($this->deleteuserid)."' LIMIT 1") or die ("SQL Error: ".  mysql_error(). "<br>"); // Удаляем пользователя с определенным ID из базы
-                                
-            if (file_exists($this->directory) == TRUE) {$this->result = 1;} else {$this->result = 0;}
          }
     }
     function MSG ()
     {
         if ($this->result == 1)
-        {
+        { ?>
+            <script>
+                alert ("Пользователь с идентификатором <?=$this->deleteuserid?> удален");
+                window.location.href = "http://<?=$_SERVER['SERVER_NAME']?>";
+            </script>
         echo "<br>Пользователь с идентификатором <strong>".$this->deleteuserid."</strong> удален.";
-        echo "<br><a href='http://news.list/index.php'>Вернуться</a>";
+        echo "<br><a href='http://".$_SERVER['SERVER_NAME']."/index.php'>Вернуться</a>";
+        <?php
         }
         if ($this->result == 0)
         {
         echo "<br>Пользователь с идентификатором <strong>".$this->deleteuserid."</strong> не найден.";
-        echo "<br><a href='http://news.list/index.php'>Вернуться</a>";
+        echo "<br><a href='http://".$_SERVER['SERVER_NAME']."/index.php'>Вернуться</a>";
         }
     }
     function __destruct() {

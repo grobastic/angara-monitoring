@@ -37,11 +37,12 @@ function mysql_trackers () {
  if (mysql_query("SELECT * FROM trackers LIMIT 1")) { echo 'Таблица <b>trackers</b> уже есть в базе!<br>'; }
 else {
     mysql_query('CREATE TABLE IF NOT EXISTS trackers ('
-            . 'treckerid INT AUTO_INCREMENT PRIMARY KEY NOT NULL'
+            . 'trackerid INT AUTO_INCREMENT PRIMARY KEY NOT NULL'
             . ', userid INT NOT NULL'
             . ', imei TINYTEXT'
             . ', name TINYTEXT'
             . ', mark TINYTEXT'
+            . ', device_id INT'
             . ', model TINYTEXT'
             . ', datereg TIMESTAMP'
             . ', reserv1 TEXT'
