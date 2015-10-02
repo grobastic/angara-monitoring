@@ -58,6 +58,7 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
         </script>
     </head>
     <body>
+        <?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/header_template.html"; ?>
         <div id="map"></div>
         <script type='text/javascript'>
             var dataUrl = '<?=$dataUrl?>';
@@ -226,6 +227,7 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
                 </form>
             </div>
         </div>
+        <?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/footer_template.html"; ?>      
     </body>
 </html>
 

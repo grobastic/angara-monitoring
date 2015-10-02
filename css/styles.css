@@ -17,7 +17,7 @@ form input i[class*=fa]{font-family:FontAweSome;}
 select{border:1px solid #d7dee3;padding:5px 39px 5px 4px;background:none;width:252px;color:#777777;cursor:pointer;height:30px;line-height:17px;appearance:none;-moz-appearance:none;-webkit-appearance:none;-o-appearance:none;-ms-appearance:none;position: relative;}
 .bx-firefox select{padding-top:4px;}
 .body{height:auto !important;margin:0 auto -171px;min-height:100%;}
-.main{padding:0 0 196px;}
+.main{padding:0 0 78px;}
 .container{width:100% !important;padding:0;}
 .maxwidth-theme{margin-left:auto !important;margin-right:auto !important;max-width:1008px;position:relative;width:100%;}
 section.page-top > .row, .greyline > .row, .logo_and_menu-row > .row, .main > .row, .container > .row{margin-left:0;margin-right:0;}
@@ -1818,13 +1818,13 @@ section#content > div {
     margin: 0;
     padding: 0;
     z-index: 1;
-    position: absolute;
+    //position: absolute;
 }
 .trackerpanel {
     z-index: 2;
     position: absolute; 
-    left: 15px; 
-    top: 10%;
+    left: 45px; 
+    top: 20%;
     background-color: white;
     border: 1px solid black;
     min-width: 200px;
@@ -1845,7 +1845,7 @@ section#content > div {
     z-index: 2;
     position: absolute; 
     right: 15px; 
-    top: 80px;
+    top: 20%;
     background-color: white;
     border: 1px solid black;
     min-width: 200px;
