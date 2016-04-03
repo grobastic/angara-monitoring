@@ -13,11 +13,16 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
 <html>
     <head>
         <?php require_once $templatesRequire;?>
+<style>.dp-highlight .ui-state-default {
+			background: #1c94c4;
+			color: #FFF;
+		}
+</style>
         <script>
             $(function() {
                 $( ".panel" ).draggable();
               });
-            $(function() {
+            /*$(function() {
                 $( "#from" ).datepicker({
                     defaultDate: 0,
                     nextText: "Позже",
@@ -44,9 +49,10 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
                     $( "#from" ).datepicker( "option", "maxDate", selectedDate );
                   }
                 });
-              });
+              });*/
               var datepickerFrom;
               var datepickerTo;
+              var trackerimei;
               	function datepickerFrom_value(o){
                     datepickerFrom = o.value;
                     datepickerFrom = datepickerFrom + " 00:00:01";
@@ -54,6 +60,12 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
               	function datepickerTo_value(o){
                     datepickerTo = o.value;
                     datepickerTo = datepickerTo + " 23:59:59";
+                }
+                function trackerimei_value(o){
+                    $(function(){
+                        trackerimei = o.value;
+                        }
+                    );
                 }
         </script>
     </head>
@@ -103,12 +115,13 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
                     <div>Трекеры:</div>
                     <div class="trackers">
                         <ul>
-                            <li><div><i class="fa fa-car"></i></div><div class="name">Название</div><div><i class="fa fa-check-square-o"></i></div></li>
-                            <li><div><i class="fa fa-bicycle"></i></div><div class="name">Название</div><div><i class="fa fa-check-square-o"></i></div></li>
-                            <li><div><i class="fa fa-truck"></i></div><div class="name">Название</div><div><i class="fa fa-square-o"></i></div></li>
-                            <li><div><i class="fa fa-bus"></i></div><div class="name">Название</div><div><i class="fa fa-square-o"></i></div></li>
+                            <li><div><i class="fa fa-car"></i></div><div class="name">Трекер 1</div><div><input type="radio" value="0358739050105197" name="trackerimei" id="trackerimei" onclick="trackerimei_value(this);"></div></li>
+                            <li><div><i class="fa fa-car"></i></div><div class="name">Трекер 2</div><div><input type="radio"  value="862304020625946" name="trackerimei" id="trackerimei" onclick="trackerimei_value(this);"></div></li>
                         </ul>   
                     </div>
+                    <script>
+
+                    </script>
                 </div>
             </div>
         </div>
@@ -118,9 +131,37 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
             </div>
             <div class="panel-body">
                 <div id="content">
-                    <div><input type="text" id="from" name="from" onchange="datepickerFrom_value(this);" size="7" placeholder="Начало" readonly></div>
-                    <div><input type="text" id="to" name="to" onchange="datepickerTo_value(this);" size="7" placeholder="Конец"  readonly></div>
-                </div>
+                    <!--<div><input type="text" id="from" name="from" onchange="datepickerFrom_value(this);" size="7" placeholder="Начало" readonly></div>
+                    <div><input type="text" id="to" name="to" onchange="datepickerTo_value(this);" size="7" placeholder="Конец"  readonly></div>-->
+                    <div id="datepicker"></div>	
+                    <script>
+                            /*
+                             * jQuery UI Datepicker: Using Datepicker to Select Date Range
+                             * http://salman-w.blogspot.com/2013/01/jquery-ui-datepicker-examples.html
+                             */
+                            $(function() {
+                                    $("#datepicker").datepicker({
+                                            beforeShowDay: function(date) {
+                                                    var date1 = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $("#from").val());
+                                                    var date2 = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $("#to").val());
+                                                    return [true, date1 && ((date.getTime() == date1.getTime()) || (date2 && date >= date1 && date <= date2)) ? "dp-highlight" : ""];
+                                            },
+                                            onSelect: function(dateText, inst) {
+                                                    var date1 = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $("#from").val());
+                                                    var date2 = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $("#to").val());
+                                                    if (!date1 || date2) {
+                                                            $("#from").val(dateText);
+                                                            $("#to").val("");
+                                                            $(this).datepicker("option", "minDate", dateText);
+                                                    } else {
+                                                            $("#to").val(dateText);
+                                                            $(this).datepicker("option", "minDate", null);
+                                                    }
+                                            }
+                                    });
+                            });
+                    </script>
+                    </div>
             </div>
         </div>
         <div class="panel panel-primary userpanel">
@@ -140,7 +181,7 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
                 </div>
             </div>
         </div>
-        <div class="b-popup" id="popup1">
+        <div class="b-popup" id="popup1" style="top:150px">
             <div class="b-popup-content">
             <?php  require_once $_SERVER['DOCUMENT_ROOT'].'/forms/addtracker.html';?>
                 <script>
@@ -227,7 +268,6 @@ $templatesRequire = $_SERVER['DOCUMENT_ROOT']."/templates/headScriptsStyles.html
                 </form>
             </div>
         </div>
-        <?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/footer_template.html"; ?>      
+        <?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/footer_template.html";?>      
     </body>
 </html>
-

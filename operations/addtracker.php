@@ -4,7 +4,7 @@ session_name("Auth");
 session_start();
 
 function __autoload ($class_name) {
-    require_once $_SERVER['DOCUMENT_ROOT'].'/lib/'.$class_name.'.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/lib/'.$class_name.'.php'; 
 }
 
 // Если не запущена сессия или не нажата кнопка

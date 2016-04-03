@@ -63,13 +63,13 @@ function start2 (url) {
     setInterval(function() {
         $.ajax({
             url:url,
-            data:"mode=1&dateFrom=" + datepickerFrom + "&dateTo=" + datepickerTo,
+            data:"mode=1&dateFrom=1" + datepickerFrom + "&dateTo=9999999999999999" + datepickerTo + "&trackerimei=" + trackerimei,
             dataType: "json",
             cache: false,
             success:function(data) {
                 var myLayer = L.geoJson(data, {style: style,onEachFeature: onEachFeature,pointToLayer:pointToLayer }).addTo(map);
                 setInterval(function() {map.removeLayer(myLayer);}, 5000);
-            }                             
+            } 
         });
     }, 5000);
 }
